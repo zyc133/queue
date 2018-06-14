@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbilllog061")
-public class Tbilllog061 {
+public class Tbilllog061{
 	
 	@Column
 	@Id

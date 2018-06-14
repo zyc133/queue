@@ -16,10 +16,10 @@ public class QueueChangeScheuler {
 	@Autowired 
 	private QueueService queueService;
 
-	@Scheduled(cron = "0 0/1 * * * ?") // 每5分钟执行一次
+	@Scheduled(cron = "0 0/5 * * * ?") // 每5分钟执行一次
 	public void statusCheck() {
 		logger.info("每分钟执行一次。开始……");
-		queueService.queuePriorityChange();
+		queueService.toChangePriority();
 		logger.info("每分钟执行一次。结束。");
 	}
 

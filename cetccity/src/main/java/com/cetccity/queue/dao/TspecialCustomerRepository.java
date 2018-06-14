@@ -13,8 +13,8 @@ import com.cetccity.queue.dao.model.TspecialCustomer;
 @Repository
 public interface TspecialCustomerRepository extends 	JpaRepository<TspecialCustomer, String>{
 
-	@Query(value="SELECT count(partid) FROM TBILLLOG061 where partid=:partid",nativeQuery=true)  
-    public long getTotalCount(@Param("partid") String partid);  
+	@Query(value="SELECT userid FROM TSPECIALCUSTOMER where CALLERNO=:callerno",nativeQuery=true)  
+    public String getUserid(@Param("callerno") String callerno);  
 	
 //	@Query("select p from Person p where p.name=:name and p.address=:address")
 //	TCustLevel withNameAndAddressQuery(@Param("name") String name, @Param("address") String address);
