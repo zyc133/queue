@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cetccity.queue.config.TestConfig;
 import com.cetccity.queue.dao.CustLevelRepository;
 import com.cetccity.queue.dao.QueueDao;
+import com.cetccity.queue.dao.SysConfRepository;
 import com.cetccity.queue.dao.Tbilllog061Repository;
 import com.cetccity.queue.dao.TspecialCustomerRepository;
+import com.cetccity.queue.dao.model.SysConf;
 import com.cetccity.queue.service.QueueService;
 
 @SpringBootApplication
@@ -43,7 +45,9 @@ public class CetccityApplication {
 	@Autowired
 	private TspecialCustomerRepository tspecialCustomerDao;
 	
-
+	@Autowired
+	private SysConfRepository sysRepository;
+	
 	@Autowired
 	private QueueService queueService;
 	
@@ -54,7 +58,9 @@ public class CetccityApplication {
 	
 	@RequestMapping("/test1")
 	public void test1() {
-		queueService.insertTSpecialCustomer("1", "15699854698");
+		List<SysConf> config = sysRepository.getConfig("lastwaitbegin");
+		System.out.println(config.get(0).getName());
+		System.out.println(config.get(0).getLastwaitbegin());
 	}
 	@RequestMapping("/test2")
 	public void test2() {

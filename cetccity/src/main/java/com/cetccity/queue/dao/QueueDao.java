@@ -6,7 +6,7 @@ import java.util.List;
 public interface QueueDao {
 
 	
-	public List<Object[]> getCallCount(Date waitbegin );
+	public List<Object[]> getCallCount(Date waitBegin,Date lastWaitBegin );
 	
 	public int updateTSpecialCustomer(String userid,String callerno);
 

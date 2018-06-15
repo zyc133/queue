@@ -15,8 +15,10 @@ import org.springframework.util.StringUtils;
 
 import com.cetccity.queue.dao.CustLevelRepository;
 import com.cetccity.queue.dao.QueueDao;
+import com.cetccity.queue.dao.SysConfRepository;
 import com.cetccity.queue.dao.Tbilllog061Repository;
 import com.cetccity.queue.dao.TspecialCustomerRepository;
+import com.cetccity.queue.dao.model.SysConf;
 import com.cetccity.queue.service.QueueService;
 
 @Service
@@ -25,6 +27,9 @@ public class QueueServiceImpl implements QueueService {
 	
 	@Autowired
 	private CustLevelRepository custLevelDao;
+	
+	@Autowired
+	private SysConfRepository sysRepository;
 	
 	@Autowired
 	private Tbilllog061Repository tbilllogDao;
@@ -52,8 +57,18 @@ public class QueueServiceImpl implements QueueService {
 	public void toChangePriority() {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss");
 		try {
+//			Date waitbegin = sf.parse(sf.format(new Date()));
+			//TODO
 			Date waitbegin = sf.parse("2018/06/01 06:49:00");
-			List<Object[]> callCount = queueDao.getCallCount(waitbegin);
+			
+			List<SysConf> config = sysRepository.getConfig("lastwaitbegin");
+			//TODO
+			Date lastwaitbegin = sf.parse("2018/06/01 06:40:00");
+			
+//			Date lastwaitbegin = config.get(0).getLastwaitbegin()
+			
+			
+			List<Object[]> callCount = queueDao.getCallCount(waitbegin,lastwaitbegin);
 			for (Object[] objects : callCount) {
 				try {
 					String callerno = objects[0].toString();
