@@ -21,7 +21,7 @@ public class QueueDaoImpl implements QueueDao {
 	public List<Object[]> getCallCount(Date waitBegin,Date lastWaitBegin ) {
 		StringBuilder sqlString = new StringBuilder();
 		sqlString.append("SELECT t.callerNo, COUNT(1) call_count  ");
-		sqlString.append("	FROM (SELECT DISTINCT callId, callerNo FROM tBillLog061  WHERE deviceType=1 AND partid='0601' AND callerNo!='12345' AND WAITBEGIN <=? and WAITBEGIN <=?) t ");
+		sqlString.append("	FROM (SELECT DISTINCT callId, callerNo FROM tBillLog061  WHERE deviceType=1 AND partid='0601' AND callerNo!='12345' AND WAITBEGIN <=? and WAITBEGIN >=?) t ");
 		sqlString.append(" GROUP BY callerNo ");
 		sqlString.append(" ORDER  BY COUNT(1) DESC ");
 		Query createNativeQuery = em.createNativeQuery(sqlString.toString());
