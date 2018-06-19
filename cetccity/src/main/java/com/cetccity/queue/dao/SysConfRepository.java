@@ -14,6 +14,6 @@ import com.cetccity.queue.dao.model.Tbilllog061;
 public interface SysConfRepository extends 	JpaRepository<SysConf, String> {
 
 	
-	@Query(value="SELECT S FROM SysConf S where S.name=:name")  
-    public List<SysConf> getConfig(@Param("name") String name);
+	@Query(value="select t.name,t.lastwaitbegin,sysdate as waitBegin from T_SYS_CONF t where name =:name",nativeQuery=true)  
+    public List<Object[]> getConfig(@Param("name") String name);
 }

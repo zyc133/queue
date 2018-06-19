@@ -17,6 +17,8 @@ public class SysConf {
 	
 	@Column
 	private Date lastwaitbegin;
+	
+	private Date waitBegin;
 
 	public String getName() {
 		return name;
@@ -33,4 +35,13 @@ public class SysConf {
 	public void setLastwaitbegin(Date lastwaitbegin) {
 		this.lastwaitbegin = lastwaitbegin;
 	}
+
+	public Date getWaitBegin() {
+		return waitBegin;
+	}
+
+	public void setWaitBegin(Date waitBegin) {
+		this.waitBegin = waitBegin;
+	}
+	
 }

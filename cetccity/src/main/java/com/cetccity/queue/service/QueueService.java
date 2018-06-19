@@ -8,10 +8,12 @@ public interface QueueService {
 	
 	public void queuePriorityChange(String userid, String callerno);
 	
-	public void toChangePriority();
+	public void toChangePriority() throws Exception;
 
-	long getUserLevel(String callerno);
+	Integer getUserLevel(String callerno);
 
 	void insertTSpecialCustomer(String userid, String callerno);
+
+	void clearCustomerPriority();
 	
 }

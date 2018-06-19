@@ -27,7 +27,7 @@ import com.cetccity.queue.dao.model.SysConf;
 import com.cetccity.queue.service.QueueService;
 
 @SpringBootApplication
-@EnableScheduling 
+//@EnableScheduling 
 @RestController
 @EnableTransactionManagement
 public class CetccityApplication {
@@ -52,18 +52,13 @@ public class CetccityApplication {
 	private QueueService queueService;
 	
 	@RequestMapping("/test")
-	public void test() {
+	public void test() throws Exception {
 		queueService.toChangePriority();
 	}
 	
-	@RequestMapping("/test1")
-	public void test1() {
-		List<SysConf> config = sysRepository.getConfig("lastwaitbegin");
-		System.out.println(config.get(0).getName());
-		System.out.println(config.get(0).getLastwaitbegin());
-	}
 	@RequestMapping("/test2")
 	public void test2() {
-		System.out.println("552");
+//		List<SysConf> config = sysRepository.getConfig("lastwaitbegin");
+//		System.out.println(config.get(0));
 	}
 }
