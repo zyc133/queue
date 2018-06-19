@@ -14,6 +14,6 @@ public interface QueueService {
 
 	void insertTSpecialCustomer(String userid, String callerno);
 
-	void clearCustomerPriority();
+	void clearCustomerPriority() throws Exception;
 	
 }

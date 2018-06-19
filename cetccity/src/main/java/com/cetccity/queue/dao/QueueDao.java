@@ -11,7 +11,7 @@ public interface QueueDao {
 	 * @param waitBegin
 	 * @return
 	 */
-	public List<Object[]> getCallCount(Date lastWaitBegin,Date waitBegin );
+	public List<Object[]> getCallCount(Date lastWaitBegin,Date waitBegin,String table,String partId);
 	
 	/**
 	 * 更改客户级别
@@ -35,7 +35,7 @@ public interface QueueDao {
 	 * @param lastWaitBegin
 	 * @return
 	 */
-	public List<Object[]> getUserForNeedBegin(Date waitBegin, Date lastWaitBegin);
+	public List<Object[]> getUserForNeedBegin(Date lastWaitBegin,Date waitBegin,String table,String partId);
 
 	public int delectTSpecialCustomer(String callerno);
 
@@ -47,6 +47,7 @@ public interface QueueDao {
 	 * 配置表的时间<时间<数据的最新时间
 	 * @return
 	 */
-	public List<String> getNewBeginDate();
+	public List<String[]> getMaxDateAndMinDateFromTbilllog(String table);
+
 	
 }

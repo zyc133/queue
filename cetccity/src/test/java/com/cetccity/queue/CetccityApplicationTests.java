@@ -14,14 +14,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cetccity.queue.dao.QueueDao;
+import com.cetccity.queue.service.QueueService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CetccityApplicationTests {
 
 	@Autowired
-	
 	private QueueDao dao;
+	
+	
+	@Autowired
+	private QueueService service;
 	
 
 //	@Test
@@ -29,7 +33,7 @@ public class CetccityApplicationTests {
 //	}
 	@Test
 	public void test1() throws ParseException {
-		DateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		DateFormat sf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 //		List<String> newBeginDate = dao.getNewBeginDate();
 //		try {
 //			Date parse = sf.parse(newBeginDate.get(0));
@@ -37,8 +41,11 @@ public class CetccityApplicationTests {
 //		} catch (ParseException e) {
 //			e.printStackTrace();
 //		}
+//		int updateSysCong = dao.updateSysCong(sf.parse("2018/06/16 16:23:33"));
+//		System.err.println(updateSysCong);
 		
-		int updateSysCong = dao.updateSysCong(sf.parse("2018/06/16 16:23:33"));
-		System.err.println(updateSysCong);
+		service.clearCustomerPriority();
+		
+		
 	}
 }
