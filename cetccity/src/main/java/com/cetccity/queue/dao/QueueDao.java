@@ -35,7 +35,7 @@ public interface QueueDao {
 	 * @param lastWaitBegin
 	 * @return
 	 */
-	public List<Object[]> getUserForNeedBegin(Date lastWaitBegin,Date waitBegin,String table,String partId);
+	public List<Object> getUserForNeedBegin(Date lastWaitBegin,Date waitBegin,String table,String partId);
 
 	public int delectTSpecialCustomer(String callerno);
 
@@ -48,6 +48,8 @@ public interface QueueDao {
 	 * @return
 	 */
 	public List<String[]> getMaxDateAndMinDateFromTbilllog(String table);
+
+	void bb();
 
 	
 }

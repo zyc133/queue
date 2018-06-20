@@ -48,7 +48,7 @@ public class QueueDaoImpl implements QueueDao {
 		return resultList;
 	}
 	@Override
-	public List<Object[]> getUserForNeedBegin(Date lastWaitBegin,Date waitBegin,String table,String partId) {
+	public List<Object> getUserForNeedBegin(Date lastWaitBegin,Date waitBegin,String table,String partId) {
 		StringBuilder sqlString = new StringBuilder();
 		sqlString.append("SELECT callerNo ");
 		sqlString.append("	FROM ");
@@ -59,7 +59,7 @@ public class QueueDaoImpl implements QueueDao {
 		Query createNativeQuery = em.createNativeQuery(sqlString.toString());
 		createNativeQuery.setParameter(1, lastWaitBegin);
 		createNativeQuery.setParameter(2, waitBegin);
-		List<Object[]> resultList = (List<Object[]>)createNativeQuery.getResultList();
+		List<Object> resultList = (List<Object>)createNativeQuery.getResultList();
 		return resultList;
 	}
 	
@@ -103,6 +103,33 @@ public class QueueDaoImpl implements QueueDao {
 		return executeUpdate;
 	}
 	@Override
+	public void bb() {
+		StringBuilder sqlString = new StringBuilder();
+		sqlString.append(" select  to_char(max(waitbegin),'yyyy/MM/dd HH24:mi:ss') ,to_char(min(waitbegin),'yyyy/MM/dd HH24:mi:ss') as waitbeginstring  from  ");
+		sqlString.append("tbilllog061");
+		Query createNativeQuery = em.createNativeQuery(sqlString.toString());
+		List<String[]> resultList = createNativeQuery.getResultList();
+		System.out.println(em);
+		this.aa();
+		this.cc();
+	}
+	public void aa() {
+		StringBuilder sqlString = new StringBuilder();
+		sqlString.append(" select  to_char(max(waitbegin),'yyyy/MM/dd HH24:mi:ss') ,to_char(min(waitbegin),'yyyy/MM/dd HH24:mi:ss') as waitbeginstring  from  ");
+		sqlString.append("tbilllog061");
+		Query createNativeQuery = em.createNativeQuery(sqlString.toString());
+		List<String[]> resultList = createNativeQuery.getResultList();
+		System.out.println(em);
+	}
+	public void cc() {
+		StringBuilder sqlString = new StringBuilder();
+		sqlString.append(" select  to_char(max(waitbegin),'yyyy/MM/dd HH24:mi:ss') ,to_char(min(waitbegin),'yyyy/MM/dd HH24:mi:ss') as waitbeginstring  from  ");
+		sqlString.append("tbilllog061");
+		Query createNativeQuery = em.createNativeQuery(sqlString.toString());
+		List<String[]> resultList = createNativeQuery.getResultList();
+		System.out.println(em);
+	}
+	@Override
 	public List<String[]> getMaxDateAndMinDateFromTbilllog(String table) {
 		StringBuilder sqlString = new StringBuilder();
 		sqlString.append(" select  to_char(max(waitbegin),'yyyy/MM/dd HH24:mi:ss') ,to_char(min(waitbegin),'yyyy/MM/dd HH24:mi:ss') as waitbeginstring  from  ");
@@ -111,5 +138,7 @@ public class QueueDaoImpl implements QueueDao {
 		List<String[]> resultList = createNativeQuery.getResultList();
 		return resultList;
 	}
+	
+	
 	
 }

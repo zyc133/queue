@@ -145,7 +145,7 @@ public class QueueServiceImpl implements QueueService {
 		Date lastwaitbegin = config.get(0).getLastwaitbegin();
 		// 不是当天,考虑跨天问题，需要考虑跨表
 		boolean today = DateUtils.isToday(lastwaitbegin);
-		List<Object[]> callerNoList = new ArrayList<Object[]>();
+		List<Object> callerNoList = new ArrayList<Object>();
 		if(!today) {
 			//前天的数据查询
 			Map<String, String> tablemap = this.getTableName(lastwaitbegin);
@@ -155,7 +155,7 @@ public class QueueServiceImpl implements QueueService {
 			//最后一秒
 			Date waitbegin = DateUtils.getLastDateTime(lastwaitbegin);
 			
-			List<Object[]> callerNoList2 = queueDao.getUserForNeedBegin(lastwaitbegin, waitbegin,table,partId);
+			List<Object> callerNoList2 = queueDao.getUserForNeedBegin(lastwaitbegin, waitbegin,table,partId);
 			callerNoList.addAll(callerNoList2);
 			
 			//今天的数据查询
@@ -168,7 +168,7 @@ public class QueueServiceImpl implements QueueService {
 			List<String[]> tablemap2 = queueDao.getMaxDateAndMinDateFromTbilllog(table1);
 			try {
 				Date waitbegin2 = sf.parse(tablemap2.get(0)[0]);
-				List<Object[]> callerNoList3 = queueDao.getUserForNeedBegin(lastwaitbegin2, waitbegin2, table1, partId1);
+				List<Object> callerNoList3 = queueDao.getUserForNeedBegin(lastwaitbegin2, waitbegin2, table1, partId1);
 				callerNoList.addAll(callerNoList3);
 			} catch (ParseException e) {
 				logger.error(e.getMessage());
@@ -189,9 +189,9 @@ public class QueueServiceImpl implements QueueService {
 			}
 		}
 		
-		for (Object[] objects : callerNoList) {
+		for (Object objects : callerNoList) {
 			try {
-				queueDao.delectTSpecialCustomer(objects[0].toString());
+				queueDao.delectTSpecialCustomer(objects.toString());
 			} catch (Exception e) {
 				logger.error("删除客户级别失败.." + e.getMessage());
 			}
